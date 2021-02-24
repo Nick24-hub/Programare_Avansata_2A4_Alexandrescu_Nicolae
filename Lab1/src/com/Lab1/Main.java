@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String [] args) {
         // apelez compulsory
         compulsory();
         // verific argumentul si apelez optional
@@ -31,6 +31,7 @@ public class Main {
         else result = 9;
         System.out.println("Willy-nilly, this semester I will learn " + languages[result]);
     }
+
 
     public static void optional(int n) {
         // Creez matricea de adiacenta folosind 0,1 random
@@ -62,9 +63,19 @@ public class Main {
         int nrcx = Is_Connected(vis, m);
 
         // Este conex?
-        if (nrcx == 1)
+        if (nrcx == 1) {
             System.out.print("Yes, the graph is connected.\n");
-
+            int[][] arb=new int[n][n];
+            for(i=0;i<n;i++)
+                vis[i]=0;
+            dfsarb(0,vis,m,arb);
+            System.out.print("Partial tree adjacency matrix:\n");
+            for (i = 0; i < n; i++) {
+                for (j = 0; j < n; j++)
+                    System.out.print(arb[i][j] + " ");
+                System.out.print('\n');
+            }
+        }
         else {
             boolean ok;
             System.out.print("No, the graph is not connected.\nConnected components:\n");
@@ -96,8 +107,16 @@ public class Main {
                 dfs(i, vis, m, nrcx);
             }
         }
-
         return nrcx;
+    }
+
+    private static void dfsarb(int x, int[] vis, int[][] m, int[][] arb) {
+        vis[x] = 1;
+        for (int i = 0; i < m.length; i++)
+            if (m[x][i] == 1 && vis[i]==0) {
+                arb[x][i]=arb[i][x]=1;
+                dfsarb(i,vis,m,arb);
+            }
     }
 
     private static void dfs(int x, int[] vis, int[][] m, int nrcx) {
@@ -107,4 +126,7 @@ public class Main {
                 dfs(i,vis,m,nrcx);
             }
     }
+
+
 }
+
