@@ -1,32 +1,30 @@
-public class Destination {
+public class Factory extends Source {
+
     private String name;
 
-    // constructori generat de IDE
-
-    public Destination() {
+    // Constructori generati de IDE
+    public Factory() {
     }
 
-    public Destination(String name) {
+    public Factory(String name) {
         this.name = name;
     }
 
-    //setter generat de IDE
-
+    // Getter si setter generati de IDE
+    @Override
     public String getName() {
         return name;
     }
 
-    // getter generat de IDE
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public void setName() {
+        this.name = "S1";
     }
 
     // toString generat de IDE
-
     @Override
     public String toString() {
-        return "Destination{" +
+        return "Factory{" +
                 "name='" + name + '\'' +
                 '}';
     }
