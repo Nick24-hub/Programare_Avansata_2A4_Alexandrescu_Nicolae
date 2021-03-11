@@ -1,4 +1,3 @@
-import javax.sql.rowset.CachedRowSet;
 import java.time.LocalTime;
 
 public class Restaurant extends Location implements Visitable, Classifiable {

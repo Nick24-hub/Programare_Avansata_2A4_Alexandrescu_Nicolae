@@ -1,5 +1,7 @@
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -63,7 +65,9 @@ public class Main {
         v4.setCost(v6, 10);
         v5.setCost(v6, 20);
 
+        System.out.println();
         System.out.println(v1.toString());
+
         City city = new City();
         city.addLocation(v1);
         city.addLocation(v2);
@@ -71,6 +75,13 @@ public class Main {
         city.addLocation(v4);
         city.addLocation(v5);
         city.addLocation(v6);
+
+        System.out.println("\n");
         System.out.println(city.toString());
+        city.displayVisitableNotPayable();
+
+        TravelPlan x = new TravelPlan(city, Arrays.asList(LocationType.Hotel, LocationType.Restaurant, LocationType.Museum));
+        System.out.println();
+        System.out.println(x.toString());
     }
 }
