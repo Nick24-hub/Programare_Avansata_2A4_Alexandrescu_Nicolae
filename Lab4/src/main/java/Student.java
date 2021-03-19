@@ -4,7 +4,7 @@ import java.util.List;
 public class Student implements Comparable<Student> {
     private final String name;
     private float grade;
-    private List<School> preferences = new ArrayList<>();
+    private List<School> preferences;
 
     public Student(String name) {
         this.name = name;

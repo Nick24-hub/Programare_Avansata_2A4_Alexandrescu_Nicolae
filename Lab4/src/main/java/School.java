@@ -4,7 +4,7 @@ import java.util.List;
 public class School implements Comparable<School> {
     private final String name;
     private int capacity;
-    private List<Student> preferences = new ArrayList<>();
+    private List<Student> preferences;
 
     public School(String name) {
         this.name = name;

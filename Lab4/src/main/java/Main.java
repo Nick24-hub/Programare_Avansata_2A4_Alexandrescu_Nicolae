@@ -1,3 +1,5 @@
+import com.github.javafaker.Faker;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -5,9 +7,11 @@ public class Main {
     public static void main(String[] args) {
 
         //creez studentii
+        Faker faker = new Faker();
         Student[] students = IntStream.rangeClosed(0, 3)
-                .mapToObj(i -> new Student("S" + i))
+                .mapToObj(i -> new Student(faker.leagueOfLegends().champion()))
                 .toArray(Student[]::new);
+
 
         //pun note random
         Random rand = new Random();
@@ -33,12 +37,12 @@ public class Main {
         System.out.println();
 
         //sortez studentii
-        List<Student> studentList = new LinkedList<>();
-        studentList.addAll(Arrays.asList(students));
+        List<Student> studentList = new LinkedList<>(Arrays.asList(students));
         Collections.sort(studentList);
 
         System.out.println("Lista studentilor ordonati crescator dupa note: " + studentList);
         System.out.println();
+
 
         //creez un set pentru scoli
         Set<School> schoolSet = new TreeSet<>();
@@ -73,5 +77,17 @@ public class Main {
 
         System.out.println("Preferintele scolilor: " + schPrefMap);
         System.out.println();
+
+
+        Problem p = new Problem();
+        p.setStdNumber(4);
+        p.setSchNumber(3);
+        p.setStudentList(Arrays.asList(students));
+        p.setSchoolList(Arrays.asList(schools));
+
+        //afisez studentii care au pe primul loc la preferinte scoala H0
+        studentList.stream()
+                .filter(student -> student.getPreferences().indexOf(schools[0])==0 )
+                .forEach(System.out::println);
     }
 }
