@@ -1,29 +1,24 @@
-package Lab5;
+package Lab5.ComponetClass;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Catalog implements Serializable {
-    private String name;
-    private String path;
+    private final String name;
     private List<Item> items = new ArrayList<>();
 
-    public Catalog(String name, String path) {
+    public Catalog(String name) {
+        if (name == null || name.trim().equals("")) {
+            throw new IllegalArgumentException(
+                    "Name should not be empty.");
+        }
         this.name = name;
-        this.path = path;
     }
+
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public List<Item> getItems() {
@@ -34,20 +29,30 @@ public class Catalog implements Serializable {
         this.items = items;
     }
 
-    //…
     public void add(Item item) {
         items.add(item);
     }
 
+
+    @Override
+    public String toString() {
+        StringBuilder itemsId = new StringBuilder("");
+        for(Item item : items)
+        {
+            itemsId.append(item.getId());
+            itemsId.append(", ");
+        }
+        return "Catalog{" +
+                "name='" + name + '\'' +
+                ", items= " + itemsId +
+                '}';
+    }
 
     public Item findById(String id) {
         return items.stream()
                 .filter(d -> d.getId().equals(id)).findFirst().orElse(null);
     }
 
-    public String getPath() {
-        return path;
-    }
 }
 
 
