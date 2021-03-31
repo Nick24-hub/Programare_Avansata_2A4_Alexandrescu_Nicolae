@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class ConfigPanel extends JPanel {
     final MainFrame frame;
-    JLabel label; // we’re drawing regular polygons
+    JLabel sidesLabel,colorLabel,shapeLabel,modeLabel; // we’re drawing regular polygons
     JSpinner sidesField; // number of sides
-    JComboBox colorCombo; // the color of the shape
+    JComboBox<String> colorCombo,shapeCombo,modeCombo; // the color of the shape
 
     public ConfigPanel(MainFrame frame) {
         this.frame = frame;
@@ -17,16 +17,36 @@ public class ConfigPanel extends JPanel {
 
     private void init() {
         //create the label and the spinner
-        JLabel sidesLabel = new JLabel("Number of sides:");
-        sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        sidesField.setValue(6); //default number of sides
+        sidesLabel = new JLabel("Number of sides:");
+        sidesField = new JSpinner(new SpinnerNumberModel(3, 3, 100, 1));
+        sidesField.setValue(3); //default number of sides
+
         //create the colorCombo, containing the values: Random and Black
-        colorCombo = new JComboBox<Color>();
-        Random random = new Random();
-        colorCombo.addItem(new Color(0, 0, 0));
-        colorCombo.addItem(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+        colorLabel=new JLabel("Select color:");
+        colorCombo = new JComboBox<String>();
+        colorCombo.addItem("Black");
+        colorCombo.addItem("Random");
+
+        shapeLabel = new JLabel("Select Shape:");
+        shapeCombo = new JComboBox<String>();
+        shapeCombo.addItem("Polygon");
+        shapeCombo.addItem("Circle");
+        shapeCombo.addItem("Oval");
+        shapeCombo.addItem("Rectangle");
+
+        modeLabel = new JLabel("Mode:");
+        modeCombo = new JComboBox<String>();
+        modeCombo.addItem("Draw");
+        modeCombo.addItem("Delete");
+        modeCombo.addItem("Free drawing");
+
+        add(modeLabel);
+        add(modeCombo);
+        add(shapeLabel);
+        add(shapeCombo);
         add(sidesLabel); //JPanel uses FlowLayout by default
         add(sidesField);
+        add(colorLabel);
         add(colorCombo);
     }
 }
