@@ -24,8 +24,8 @@ public class Player implements Runnable {
     @Override
     public void run() {
         Random rand = new Random();
-        while (board.getTokenNumber() > 1) {
-            int x = rand.nextInt(board.getTokenNumber() - 1) + 1;
+        while (board.getTokenNumber() > 0) {
+            int x = rand.nextInt(board.getTokenNumber()+1);
             sequence.add(board.takeToken(x));
             System.out.println(name + " a extras token-ul cu id-ul " + x);
         }
