@@ -2,6 +2,7 @@ package com.lab7;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -28,11 +29,12 @@ public class Board {
     public void generateTokens()
     {
         Random rand = new Random();
-        for(int i=0;i<tokenNumber-1;++i)
-        {
-            for(int j=i+1;j<tokenNumber;++j)
-                tokenList.add(new Token(i,j,rand.nextInt(10)));
-        }
+        List<Integer> shuffledList = new ArrayList<>();
+        for(int i=0;i<tokenNumber;++i)
+            shuffledList.add(i);
+        Collections.shuffle(shuffledList);
+        for(int i=0;i<tokenNumber;++i)
+            tokenList.add(new Token(i,shuffledList.get(i),rand.nextInt(10)));
     }
 
     public Token takeToken(int x){
