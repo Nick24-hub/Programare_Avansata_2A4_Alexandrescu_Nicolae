@@ -13,7 +13,7 @@ public class DBConnection {
         if(con == null)
         {
             try {
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "nicolae");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/electroway", "root", "root");
             } catch (SQLException e) {
                 System.err.println("Cannot connect to DB: " + e);
             }

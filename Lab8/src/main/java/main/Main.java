@@ -1,14 +1,13 @@
 package main;
 
-import DAO.GenreDAO;
-import DAO.MovieDAO;
-import tables.Genre;
-import tables.Movie;
+import DAO.*;
+import tables.*;
+
 import java.sql.SQLException;
 
 
 public class Main {
-    public static int movieID,genreID;
+    public static int movieID,genreID,actorID,directorID,movieGenresJunctionID;
     public static void main(String[] args) throws SQLException {
 
         // inserez filmele
@@ -36,5 +35,46 @@ public class Main {
         System.out.println(genreDao.getGenre(0).toString());
         System.out.println(genreDao.getGenre(1).toString());
         System.out.println(genreDao.getGenre(2).toString());
+
+        //inserez actorii
+
+        ActorDAO actorDao = new ActorDAO();
+        actorDao.add(new Actor("Actor1"),actorID++);
+        actorDao.add(new Actor("Actor2"),actorID++);
+        actorDao.add(new Actor("Actor3"),actorID++);
+
+        //inserez directorii
+
+        DirectorDAO directorDao = new DirectorDAO();
+        directorDao.add(new Director("Director1"),directorID++);
+        directorDao.add(new Director("Director2"),directorID++);
+        directorDao.add(new Director("Director3"),directorID++);
+
+        // afisez ceea ce se afla int abela actori
+
+        System.out.println(actorDao.getActor(0).toString());
+        System.out.println(actorDao.getActor(1).toString());
+        System.out.println(actorDao.getActor(2).toString());
+
+        // afisez directorii din baza de date
+
+        System.out.println(directorDao.getDirector(0).toString());
+        System.out.println(directorDao.getDirector(1).toString());
+        System.out.println(directorDao.getDirector(2).toString());
+
+        // inserez genurile filmelor in tabela de asociere "movieGenresJunction"
+
+        MovieGenresJunctionDAO movieGenresJunctionDao = new MovieGenresJunctionDAO();
+        movieGenresJunctionDao.add(new MovieGenresJunction(0,2),movieGenresJunctionID++);
+        movieGenresJunctionDao.add(new MovieGenresJunction(0,1),movieGenresJunctionID++);
+        movieGenresJunctionDao.add(new MovieGenresJunction(1,1),movieGenresJunctionID++);
+        movieGenresJunctionDao.add(new MovieGenresJunction(2,0),movieGenresJunctionID++);
+        movieGenresJunctionDao.add(new MovieGenresJunction(2,2),movieGenresJunctionID++);
+
+        // afisez toate genurile filmelor
+
+        System.out.println("Film1 are genurile: " + movieGenresJunctionDao.getMovieGenres(0).toString());
+        System.out.println("Film2 are genurile: " + movieGenresJunctionDao.getMovieGenres(1).toString());
+        System.out.println("Film3 are genurile: " + movieGenresJunctionDao.getMovieGenres(2).toString());
     }
 }

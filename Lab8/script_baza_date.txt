@@ -1,0 +1,47 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS movieGenresjunction;
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS directors;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+CREATE OR REPLACE TABLE movies
+(
+    id           int primary key not null,
+    title        varchar(64)     not null,
+    release_date varchar(64)     not null,
+    duration     int             not null,
+    score        int             not null
+);
+
+CREATE OR REPLACE TABLE genres
+(
+    id   int primary key not null,
+    name varchar(64)     not null
+);
+
+CREATE OR REPLACE TABLE movieGenresJunction
+(
+    id       int primary key not null,
+    movieId int REFERENCES movies (id),
+    genreId int REFERENCES genres (id)
+);
+
+CREATE OR REPLACE TABLE actors
+(
+    id int primary key not null,
+    name varchar(64) not null
+);
+
+CREATE OR REPLACE TABLE directors
+(
+    id int primary key not null,
+    name varchar(64) not null
+);
+
+select * from movies;
+select * from genres;
+select * from moviegenresjunction;
+select * from movies join movieGenresJunction on movies.id=movieGenresJunction.movieId join genres on movieGenresJunction.genreId=genres.id;
