@@ -6,9 +6,11 @@ import java.net.Socket;
 
 class ClientThread extends Thread {
     private final Socket socket;
+    private final SimpleServer server;
 
-    public ClientThread(Socket socket) {
+    public ClientThread(Socket socket, SimpleServer server) {
         this.socket = socket;
+        this.server = server;
     }
 
     public void run() {
@@ -28,7 +30,8 @@ class ClientThread extends Thread {
                     raspuns = request;
                     out.println(raspuns);
                     out.flush();
-                    System.exit(0);
+                    server.StopServer();
+                    break;
                 }
                 else if (request.equals("exit")) {
                     raspuns = request;
