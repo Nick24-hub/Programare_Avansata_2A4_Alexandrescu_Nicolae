@@ -1,19 +1,30 @@
 package com.example.lab11;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Person {
-    int id;
+    private int id;
+    private String name;
+    private int numberOfFriends;
 
-    public void setName(String name) {
-        this.name = name;
+    public int getNumberOfFriends() {
+        return numberOfFriends;
     }
 
-    private String name;
+    public void setNumberOfFriends(int numberOfFriends) {
+        this.numberOfFriends = numberOfFriends;
+    }
 
-    public Person(int id, String name) {
+    public Person(int id, String name, int numberOfFriends) {
         this.id = id;
+        this.name = name;
+        this.numberOfFriends=numberOfFriends;
+    }
+
+    public Person() {
+
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -28,4 +39,5 @@ public class Person {
     public String getName() {
         return name;
     }
+
 }
