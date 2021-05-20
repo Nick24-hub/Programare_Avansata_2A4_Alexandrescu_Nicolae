@@ -201,7 +201,7 @@ public class PersonController {
     }
 
     @GetMapping("/most/{k}")
-    public Person getMostPopular(int k) throws SQLException {
+    public Person getMostPopular( int k) throws SQLException {
         List<Person> persons = new ArrayList<>();
        persons=getPersons();
         List<Person> sortedPersons = persons.stream()
@@ -211,7 +211,7 @@ public class PersonController {
     }
 
     @GetMapping("/least/{k}")
-    public Person getLeastPopular(int k) throws SQLException {
+    public Person getLeastPopular( int k) throws SQLException {
         List<Person> persons = new ArrayList<>();
         persons=getPersons();
         List<Person> sortedPersons = persons.stream()
