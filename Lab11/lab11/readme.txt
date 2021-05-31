@@ -1,1 +1,1 @@
-Am rezolvat complet partea compulsory si primele doua subpuncte din partea otionala.
+Am rezolvat complet partea compulsory si partea otionala fara subpunctul al 3-lea.
